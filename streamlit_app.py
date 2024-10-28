@@ -15,6 +15,26 @@ st.set_page_config(
 
 
 # -----------------------------------------------------------------------------
+# Authentication
+usernames_passwords = {'Hellen': 'passwod123'}
+
+def authenticate(username, password):
+    return usernames_passwords.get(username) == password
+
+def login():
+    st.sidebar.title('Login')
+    username = st.sidebar.text_input('Username')
+    password = st.sidebar.text_input('Password', type='password')
+    login_button = st.sidebar.button('Login')
+    if login_button:
+        if authenticate(username, password):
+            st.sidebar.success('Login successful!')
+            return True
+        else:
+            st.sidebar.error('Invalid credentials')
+            return False
+    return False
+
 # Declare some useful functions.
 
 def connect_db():
